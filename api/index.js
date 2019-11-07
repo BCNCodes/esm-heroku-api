@@ -1,20 +1,16 @@
-import https from 'https';
+import http from 'http';
 import app from './app.js';
 import chatRouter from './controllers/chat/index.js'; 
 
-import fs from 'fs';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
+// import { fileURLToPath } from 'url';
 import socketIO from 'socket.io';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+//const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 
-const server = https.createServer({
-    key: fs.readFileSync( `${__dirname}/config/server.key`),
-    cert: fs.readFileSync( `${__dirname}/config/server.cert`)
-}, app)
+const server = http.createServer(app)
 
 const io = socketIO(server);
 
